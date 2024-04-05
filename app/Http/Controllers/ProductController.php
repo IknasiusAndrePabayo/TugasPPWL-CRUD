@@ -21,12 +21,10 @@ class ProductController extends Controller
 
     }
 
-
     public function create(): Response
     {
         return response(view('products.create'));
     }
-
 
     public function store(StoreProductRequest $request): RedirectResponse
     {
@@ -36,7 +34,6 @@ class ProductController extends Controller
 
     }
 
-
     public function edit(string $id): Response
     {
       $product = Product::findOrFail($id);
@@ -44,12 +41,10 @@ class ProductController extends Controller
       return response(view('products.edit', ['product' => $product]));
     }
 
-
     public function show($id)
     {
         //
     }
-
 
   public function update(UpdateProductRequest $request, string $id): RedirectResponse
   {
@@ -59,7 +54,6 @@ class ProductController extends Controller
           return redirect(route('index'))->with('success', 'Updated!'); 
       }
   }
-
 
   public function destroy(string $id): RedirectResponse
   {

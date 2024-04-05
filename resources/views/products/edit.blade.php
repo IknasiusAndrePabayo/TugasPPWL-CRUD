@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Halaman Edit Produk</title>
+    <title>Edit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
   <body>
@@ -47,12 +47,20 @@
                       <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}"  placeholder="Name">
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Brand</label>
+                        <input type="text" class="form-control" name="brand" value="{{ old('brand', $product->brand) }}"  placeholder="Brand">
+                    </div>
+                    <div class="mb-3">
                       <label class="form-label">Price</label>
-                      <input type="text" class="form-control" name="price" value="{{ old('price', $product->price) }}"  placeholder="Price">
+                      <input type="text" class="form-control" name="price" id='price' value="{{ old('price', $product->price) }}"  placeholder="Price">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Stock</label>
                       <input type="text" class="form-control" name="stock" value="{{ old('stock', $product->stock) }}"  placeholder="Stock">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <input type="text" class="form-control" name="category" value="{{ old('category', $product->category) }}"  placeholder="Category">
                     </div>
                 </div>
                 <div class="card-footer">
@@ -65,5 +73,20 @@
         </div>
       </div>
     </div>
+    <script>
+      document.getElementById('price').addEventListener('input', function(evt) {
+          var value = this.value.replace(/\D/g, '');
+          if (value != "") {
+              value = parseInt(value, 10);
+              this.value = 'Rp ' + formatRupiah(value);
+          }
+        });
+      function formatRupiah(angka) {
+          var reverse = angka.toString().split('').reverse().join(''),
+              ribuan = reverse.match(/\d{1,3}/g);
+          ribuan = ribuan.join('.').split('').reverse().join('');
+          return ribuan;
+      }
+    </script>
   </body>
 </html>

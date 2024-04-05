@@ -24,8 +24,17 @@ class UpdateProductRequest extends FormRequest
               Rule::unique('products')->ignore($this->id),
           ],
           'name' => ['required', 'max:100'],
+          'brand' => ['required', 'max:100'],
           'price' => ['required', 'numeric', 'min:1'],
           'stock' => ['required', 'numeric', 'min:0'],
+          'category' => ['required', 'max:100'],
         ];
+    }
+  
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'price' => preg_replace('/[^0-9]/', '', $this->price),
+        ]);
     }
 }

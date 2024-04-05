@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My App</title>
+    <title>DB Manajemen</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
   <body>
@@ -32,8 +32,10 @@
                       <th>ID</th>
                       <th>KODE</th>
                       <th>Name</th>
+                      <th>Brand</th>
                       <th>Price</th>
                       <th>Stock</th>
+                      <th>Category</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -43,8 +45,10 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->kode }}</td>
                         <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->brand }}</td>
+                        <td>{{ number_format($product->price, 2, ',', '.') }}</td>
                         <td>{{ $product->stock }}</td>
+                        <td>{{ $product->category }}</td>
                         <td>
                           <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-secondary btn-sm">edit</a>
                           <a href="#" class="btn btn-sm btn-danger" onclick="
